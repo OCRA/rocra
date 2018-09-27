@@ -65,38 +65,38 @@ class Rocra
 
       # Password
       if dataInput.include?("psha1")
-        password = password.ljust(40, '0')
+        password = password.rjust(40, '0')
         password_length = 20
       end
 
       if dataInput.include?("psha256")
-        password = password.ljust(64, '0')
+        password = password.rjust(64, '0')
         password_length = 32
       end
 
       if dataInput.include?("psha512")
-        password = password.ljust(128, '0')
+        password = password.rjust(128, '0')
         password_length = 64
       end
 
       # session_information
       if dataInput.include?("s064")
-        session_information = session_information.ljust(128, '0')
+        session_information = session_information.rjust(128, '0')
         session_information_length = 64
       end
 
       if dataInput.include?("s128")
-        session_information = session_information.ljust(256, '0')
+        session_information = session_information.rjust(256, '0')
         session_information_length = 128
       end
 
       if dataInput.include?("s256")
-        session_information = session_information.ljust(512, '0')
+        session_information = session_information.rjust(512, '0')
         session_information_length = 256
       end
 
       if dataInput.include?("s512")
-        session_information = session_information.ljust(128, '0')
+        session_information = session_information.rjust(128, '0')
         session_information_length = 64
       end
 
@@ -195,7 +195,7 @@ class Rocra
     # @param String text       the message or text to be authenticated.
     #
     def hmac_sha1(crypto, keyBytes, text)
-      digest = OpenSSL::Digest::Digest.new(crypto)
+      digest = OpenSSL::Digest.new(crypto)
       str2hex(OpenSSL::HMAC.digest(digest, keyBytes, text))
     end
 
